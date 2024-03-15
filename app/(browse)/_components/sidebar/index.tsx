@@ -1,11 +1,12 @@
 import { getRecommended } from "@/lib/recommended-service"
 import { Recommended, RecommendedSkeleton } from "./recommended"
-import { Toggle } from "./toggle"
+import { Toggle, ToggleSkeleton } from "./toggle"
 import { Wrapper } from "./wrapper"
 
 export const SidebarSkeleton = () => {
     return (
      <aside className="fixed left-0 flex flex-col w-[80px] lg:w-60 h-full bg-background border-r border-[#2D2DE35] z-50">
+        <ToggleSkeleton/>
         <RecommendedSkeleton/>
      </aside>   
     )
