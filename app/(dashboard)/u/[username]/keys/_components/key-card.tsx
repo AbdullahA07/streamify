@@ -9,7 +9,7 @@ interface KeyCardProps {
     value: string | null
 }
 
-const KeyCard = ({value} : KeyCardProps) => {
+export const KeyCard = ({value} : KeyCardProps) => {
     const [show, setShow] = useState(false);
 
     return ( 

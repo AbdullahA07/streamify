@@ -12,8 +12,7 @@ interface CopyButtonProps {
 const CopyButton = ({value} : CopyButtonProps) => {
     const [isCopied, setIsCopied] = useState(false);
     const onCopy = () => {
-        if(!value)
-        return ;
+        if(!value) return ;
 
         setIsCopied(true);
         navigator.clipboard.writeText(value);
@@ -26,7 +25,7 @@ const CopyButton = ({value} : CopyButtonProps) => {
 
     return ( 
         <Button onClick={onCopy}
-        disabled={!value || !isCopied}
+        disabled={!value || isCopied}
         variant="ghost"
         size="sm">
             <Icon className="h-4 w-4"/>
