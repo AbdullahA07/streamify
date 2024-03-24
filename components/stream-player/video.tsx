@@ -9,9 +9,9 @@ import {
 
 import { Skeleton } from "../*/ui/skeleton";
 
-// import { OfflineVideo } from "./offline-video";
-// import { LoadingVideo } from "./loading-video";
-// import { LiveVideo } from "./live-video";
+import { OfflineVideo } from "./offline-video";
+import { LoadingVideo } from "./loading-video";
+import { LiveVideo } from "./live-video";
 
 interface VideoProps {
   hostName: string;
@@ -32,11 +32,11 @@ export const Video = ({
   let content;
 
   if (!participant && connectionState === ConnectionState.Connected) {
-    content = <p>Host is offline</p>
+    content = <OfflineVideo username={hostName} />;
   } else if (!participant || tracks.length === 0) {
-    content = <p>Loading...</p>
+    content = <LoadingVideo label={connectionState} />
   } else {
-    content = <p>Live Video</p>
+    content = <LiveVideo participant={participant} />
   };
 
   return (
