@@ -63,8 +63,10 @@ model Block {
 
 model Stream {
   id String @id @default(uuid())
-  name String @db.Text
-  thumbnailUrl String? @db.Text
+  // name String @db.Text
+  // thumbnailUrl String? @db.Text
+  title String
+  thumbnail String?
 
   ingressId String? @unique
   serverUrl String? @db.Text
@@ -83,6 +85,6 @@ model Stream {
 
   @@index([userId])
   @@index([ingressId])
-  @@fulltext([name])
+  @@fulltext([title])
 
 }
