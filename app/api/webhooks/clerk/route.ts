@@ -53,7 +53,7 @@ export async function POST(req: Request)
                     imageUrl: payload.data.image_url,
                     stream: {
                         create: {
-                            name: `${payload.data.username}'s Stream`
+                            title: `${payload.data.username}'s Stream`
                         }
                     }
                 }
