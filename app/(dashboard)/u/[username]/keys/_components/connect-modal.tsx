@@ -20,9 +20,11 @@ const ConnectModal = () => {
     const closeRef = useRef<ElementRef<"button">>(null);
     const [isPending, startTransition] = useTransition();
     const [ingressType, setIngressType] = useState<IngressType>(RTMP);
-    
+    console.log("ingressType: " + parseInt(ingressType))
     const onSubmit = () => {
+        console.log("inside submit")
         startTransition(() => {
+            console.log("inside transition")
             createIngress(parseInt(ingressType))
             .then(() => { 
                 toast.success("Ingress created")

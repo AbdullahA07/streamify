@@ -6,6 +6,8 @@ import { db } from "@/lib/db";
 
 export async function POST(req: Request)
 {
+    console.log("Inside POST")
+    debugger;
     const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
     if(!WEBHOOK_SECRET)
     {
@@ -42,9 +44,10 @@ export async function POST(req: Request)
 
     const {id} = evt.data;
     const eventType = evt.type;
-
+    console.log("eventType: " + eventType)
     if(eventType === 'user.created')
     {
+        console.log("Payload:" + payload.data)
         await db.user.create(
             {
                 data: {
