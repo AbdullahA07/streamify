@@ -6,8 +6,7 @@ import { db } from "@/lib/db";
 
 export async function POST(req: Request)
 {
-    console.log("Inside POST")
-    debugger;
+
     const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
     if(!WEBHOOK_SECRET)
     {
