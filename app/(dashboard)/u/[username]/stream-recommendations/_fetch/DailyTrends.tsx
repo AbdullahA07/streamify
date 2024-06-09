@@ -84,7 +84,7 @@ const DailyTrends = () => {
         <div className="flex-1 max-w-2xl p-4 rounded-lg shadow">
           <h1 className="text-3xl font-bold mb-4">Related Details</h1>
           {/* Content for the second section */}
-          <div className="flex-1 max-w-2xl p-4  rounded-lg shadow">
+          {/* <div className="flex-1 max-w-2xl p-4  rounded-lg shadow"> */}
           {/* <h1 className="text-3xl font-bold mb-4">Trending Topics</h1> */}
           <ul className="space-y-2">
             {section2.length > 0 &&  section2?.map((topic, index) => (
@@ -96,7 +96,7 @@ const DailyTrends = () => {
               </li>
             ))}
           </ul>
-        </div>
+        {/* </div> */}
         </div>
         <div className="flex-1 max-w-2xl p-4 rounded-lg shadow">
           <h1 className="text-3xl font-bold mb-4">Ask Artificial Intelligence</h1>
