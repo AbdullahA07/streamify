@@ -1,20 +1,16 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import googleTrendsApi from "google-trends-api";
+import { NextRequest, NextResponse } from 'next/server';
+import googleTrendsApi from 'google-trends-api';
 
-export async function GET(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  googleTrendsApi.dailyTrends({ geo: "US" })
-    .then((results: any) => {
-      console.log("results: "+ results);
-      const parsedResults = JSON.parse(results);
-      const text = JSON.stringify(parsedResults);
-      return new Response(text,{status: 200})
-      res.status(200).json(results);
-    })
-    .catch((error: Error) => {
-      return new Response(error.message,{status: 400})
-      res.status(500).json({ error: error.message });
-    });
+// Named export for GET method
+export async function GET(req: NextRequest) {
+  try {
+    const results = await googleTrendsApi.dailyTrends({ geo: 'US' });
+    // No need to parse JSON if your API already returns a JSON response
+    const parsedResults = JSON.parse(results);
+    return NextResponse.json(parsedResults);
+  } catch (error) {
+    // Handle errors properly
+    console.error('Error fetching Google Trends data:', error);
+    return new NextResponse('Internal Server Error', { status: 500 });
+  }
 }
