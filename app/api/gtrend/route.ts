@@ -4,7 +4,7 @@ import googleTrendsApi from 'google-trends-api';
 // Named export for GET method
 export async function GET(req: NextRequest) {
   try {
-    const results = await googleTrendsApi.dailyTrends({ geo: 'US' });
+    const results = await googleTrendsApi.dailyTrends({ geo: 'IN' });
     // No need to parse JSON if your API already returns a JSON response
     const parsedResults = JSON.parse(results);
     return NextResponse.json(parsedResults);
