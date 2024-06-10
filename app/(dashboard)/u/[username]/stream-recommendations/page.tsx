@@ -4,7 +4,8 @@ import DailyTrends from "./_fetch/DailyTrends";
 const Home = () => {
   return (
     <div>
-      <DailyTrends />
+      <DailyTrends
+      />
     </div>
   );
 };

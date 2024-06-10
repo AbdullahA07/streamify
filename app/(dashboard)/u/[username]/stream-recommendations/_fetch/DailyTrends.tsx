@@ -14,9 +14,9 @@ const DailyTrends = () => {
   const [aidata, setAIData] = useState<any[]>([]);
   const [error, setError] = useState(null);
   const [section2, setSection2] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, seLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<any>();
-  const [value, setValue] = useState("");
   const [showResults, setShowResults] = useState<boolean>(false); // State to show/hide results
   const [typingIndex, setTypingIndex] = useState<number>(0); // State for typing animation
 
@@ -34,7 +34,7 @@ const DailyTrends = () => {
   }, []);
 
   const onClear = () => {
-    setValue("");
+    // setValue("");
   }
 
   const fetchData = () => {
@@ -68,17 +68,22 @@ const DailyTrends = () => {
 
   const handleSection2 = (props: any) => {
     // console.log(props.url);
+    setSearchQuery(props.title);
     setMessage({ message: { role: "user", content: "read this article" + props.url + " and suggest me some streaming ideas to stream on my channel" } });
     // console.log(JSON.stringify(message));
 
   }
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="p-4">
       <div className="flex space-x-4">
         <div className="flex-1 max-w-2xl p-4 rounded-lg shadow">
           <h1 className="text-3xl font-bold mb-4">Trending Topics</h1>
-          <ul className="space-y-2">
+          <ul className="space-y-2 overflow-y-scroll"
+            style={{
+              height: "78vh"
+            }}
+          >
             {data.length > 0 && data?.map((topic, index) => (
               <li
                 key={index}
@@ -94,16 +99,23 @@ const DailyTrends = () => {
           {/* Content for the second section */}
           {/* <div className="flex-1 max-w-2xl p-4  rounded-lg shadow"> */}
           {/* <h1 className="text-3xl font-bold mb-4">Trending Topics</h1> */}
-          <ul className="space-y-2">
-            {section2.length > 0 && section2?.map((topic, index) => (
-              <li
-                key={index}
-                onClick={() => handleSection2(topic)}
-                className="font-semibold p-4 rounded-lg shadow hover:bg-gray-200 transition text-white bg-[#252731]">
-                {topic.title}
-              </li>
-            ))}
-          </ul>
+          {section2.length > 0 && (
+            <ul className="space-y-2 overflow-y-scroll"
+              style={{
+                height: "78vh"
+              }}
+            >
+              {section2?.map((topic, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleSection2(topic)}
+                  className="font-semibold p-4 rounded-lg shadow hover:bg-gray-200 transition text-white bg-[#252731]">
+                  {topic.title}
+                </li>
+              ))}
+            </ul>
+          )
+          }
           {/* </div> */}
         </div>
         <div className="flex-1 max-w-2xl p-4 rounded-lg shadow">
@@ -111,28 +123,39 @@ const DailyTrends = () => {
           {/* Content for the third section */}
           {/* <textarea disabled
           className='w-full p-3'/> */}
-          <div className="relative w-full lg:w-2/4 lg:mr-2 flex items-center">
-            <Input disabled placeholder="Search" className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0" value={value}
-              onChange={(e) => { setValue(e.target.value) }} />
-            <Button type="submit" size="sm" variant="secondary" className="rounded-l-none" onClick={fetchData}>
+          <div className="relative w-full lg:mr-2 flex items-center">
+            <Input
+              disabled
+              placeholder="Search"
+              className="w-full rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+              value={searchQuery}
+            // onChange={(e) => { setValue(e.target.value) }}
+            />
+            <Button disabled={searchQuery.length === 0} type="submit" size="sm" variant="secondary" className="rounded-l-none" onClick={fetchData}>
               <SearchIcon className="h-5 w-f text-muted-foreground" />
             </Button>
           </div>
-          
+          {aidata.length > 0 && (
             <div>
               <h2 className="text-2xl font-bold mt-4">Results</h2>
               {/* {aidata.length > 0 && ( */}
-                <ul className="mt-2 space-y-2 p-4 rounded-lg shadow">
-                  {aidata.map((item, index) => (
-                    <li key={index} className="font-semibold p-4 rounded-lg shadow hover:bg-gray-200 transition text-white bg-[#252731]" >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <ul className="mt-2 space-y-2 p-4 rounded-lg shadow overflow-y-scroll"
+                style={{
+                  height: "70vh"
+                }}>
+                {aidata.map((item, index) => (
+                  <li key={index} className="font-semibold p-4 rounded-lg shadow hover:bg-gray-200 transition text-white bg-[#252731]" >
+                    {item}
+                  </li>
+                ))}
+              </ul>
               {/* )} */}
             </div>
-          
-          
+
+          )
+          }
+
+
           {/* <Button variant="secondary" onClick={fetchData}>
              Fetch Streaming Ideas
           </Button> */}
