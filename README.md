@@ -1,5 +1,44 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Project Setup Instructions
+This project integrates LiveKit, Clerk Authentication, Google Trends, and OpenAI within a Next.js framework. Follow the steps below to set up and run the project:
+
+1, Clone the Project
+
+Edit the .env file in the root directory of the project.
+2, Place your API secrets and keys for LiveKit, Clerk Authentication, Google Trends, and OpenAI in the corresponding fields.
+Example:
+
+LIVEKIT_API_KEY=your_livekit_api_key
+CLERK_API_KEY=your_clerk_api_key
+GOOGLE_TRENDS_API_KEY=your_google_trends_api_key
+OPENAI_API_KEY=your_openai_api_key
+
+3, Install Dependencies
+
+npm install
+
+4, Download and Install OBS Studio
+
+Download and install OBS Studio or any other streaming tool of your choice from OBS Studio.
+
+5, Generate Ingress ID
+
+Login to webapp
+Go to dashboard
+Go to Keys
+Select one of the provided protocols
+Generate key
+
+6, Copy your Ingress ID and server URL from the Webapp.
+Paste these values into the appropriate fields in your streaming tool.
+
+7, Start your stream using the configured streaming tool.
+Open the Web Application
+
+Open the web application in your browser.
+Enjoy the stream!
+
 ## Getting Started
 
 First, run the development server:
